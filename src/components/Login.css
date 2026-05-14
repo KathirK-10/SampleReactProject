@@ -1,0 +1,10 @@
+.loginContainer {
+  background: transparent url("./login_bg.png") no-repeat top;
+  padding: 30px;
+  border-radius: 15px;
+  height: 311px;
+  width: 450px;
+  margin: 20px auto;
+  box-sizing: border-box;
+  color: white;
+}

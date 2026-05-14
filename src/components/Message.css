@@ -1,0 +1,282 @@
+/* =========================
+   THEME SYSTEM
+========================= */
+:root {
+  --bg: #0b1220;
+  --panel: rgba(255,255,255,0.06);
+  --text: #ffffff;
+  --muted: rgba(255,255,255,0.6);
+
+  --me: linear-gradient(135deg, #7c3aed, #2563eb);
+  --other: rgba(255,255,255,0.08);
+
+  --accent: #22c55e;
+  --shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.light {
+  --bg: #f5f7ff;
+  --panel: rgba(0,0,0,0.05);
+  --text: #111827;
+  --muted: rgba(0,0,0,0.5);
+
+  --me: linear-gradient(135deg, #6366f1, #06b6d4);
+  --other: rgba(0,0,0,0.06);
+
+  --accent: #16a34a;
+  --shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   CHAT APP CONTAINER
+========================= */
+.chatApp {
+  width: 380px;
+  height: 600px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui;
+
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* =========================
+   HEADER (GLASS EFFECT)
+========================= */
+.header {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: var(--panel);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+
+  background: var(--me);
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+
+  box-shadow: 0 0 15px rgba(124,58,237,0.4);
+}
+
+.name {
+  font-weight: 700;
+}
+
+.status {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* =========================
+   CHAT BODY
+========================= */
+.body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.body::-webkit-scrollbar {
+  width: 5px;
+}
+.body::-webkit-scrollbar-thumb {
+  background: linear-gradient(#7c3aed, #2563eb);
+  border-radius: 10px;
+}
+
+/* =========================
+   MESSAGE BUBBLES
+========================= */
+.msg {
+  max-width: 75%;
+  padding: 10px 12px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.4;
+
+  animation: pop 0.2s ease;
+  position: relative;
+  word-break: break-word;
+}
+
+/* my message */
+.me {
+  align-self: flex-end;
+  background: var(--me);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+/* other message */
+.other {
+  align-self: flex-start;
+  background: var(--other);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* =========================
+   TIMESTAMP
+========================= */
+.time {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* =========================
+   TICKS (seen/delivered)
+========================= */
+.ticks {
+  font-size: 11px;
+  margin-left: 6px;
+  color: #60a5fa;
+  animation: tickFade 0.3s ease;
+}
+
+@keyframes tickFade {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   REACTIONS
+========================= */
+.reactions {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.react {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+}
+
+/* =========================
+   TYPING INDICATOR
+========================= */
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 8px 10px;
+  background: var(--panel);
+  width: fit-content;
+  border-radius: 12px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--muted);
+  border-radius: 50%;
+  animation: bounce 1s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* =========================
+   VOICE MESSAGE STYLE
+========================= */
+.voice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wave {
+  width: 80px;
+  height: 10px;
+  border-radius: 20px;
+
+  background: linear-gradient(90deg, #22c55e, #3b82f6);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+/* =========================
+   INPUT AREA
+========================= */
+.footer {
+  display: flex;
+  padding: 10px;
+  gap: 8px;
+
+  background: var(--panel);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+}
+
+.footer button {
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+
+  background: var(--me);
+  color: white;
+
+  transition: 0.2s;
+}
+
+.footer button:hover {
+  transform: scale(1.05);
+}
+
+/* =========================
+   ANIMATION (MESSAGE POP)
+========================= */
+@keyframes pop {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
