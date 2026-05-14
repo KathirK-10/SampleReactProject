@@ -24,7 +24,7 @@ function App() {
         <Route path="/Apiuser" element={<ProtectedRoute><Apiuser /></ProtectedRoute>} />
         <Route path="/Profilecard" element={<ProtectedRoute><ProfileCard title="Kitty" images={img}/></ProtectedRoute>} />
         <Route path="/Favitems" element={<ProtectedRoute><FavItems /></ProtectedRoute>} />
-        <Route path="/practice" element={<ProtectedRoute><Practice /></ProtectedRoute>} />
+        {/* <Route path="/practice" element={<ProtectedRoute><Practice /></ProtectedRoute>} /> */}
         <Route path="/Message" element={<ProtectedRoute><Message /></ProtectedRoute>} />
         <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
         <Route path="/login" element={<Login />} />
