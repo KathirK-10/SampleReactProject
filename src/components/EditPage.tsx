@@ -1,6 +1,6 @@
 import {useEffect, useState,ChangeEvent } from 'react'
 import api from "../api/axios";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom" ;
 
 interface FormDataType {
   travel_name: string;
