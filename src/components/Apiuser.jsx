@@ -7,27 +7,39 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
-import {Backdrop,CircularProgress} from '@mui/material';
-
+import {Backdrop,CircularProgress,Button} from '@mui/material';
+import { Outlet, useNavigate } from "react-router-dom";
+const baseurl = import.meta.env.VITE_BASEURL;
+import api from "../api/axios";
 
 const Apiuser = () => {
+    const navigate = useNavigate();
     const[user,setUser] = useState([]);
     const[search,setSearch] = useState("");
     const[loading,setLoading] = useState(true);
 
     useEffect(()=>{
-             fetch("https://jsonplaceholder.typicode.com/users")
-             .then(res => res.json())
-             .then(data=> {
-                setTimeout(() => {
-                    setUser(data)
-                    setLoading(false)
-                }, 1000);
-            })
-            .catch(err => console.log(err))
-    },[]);
+      const details = async () =>{
+        const response = await api.get("traveldetails")
+        setUser(response.data.travelsDetails)
+        setLoading(false)
 
-    const filtered = user.filter(user=>user.name.toLowerCase().includes(search.toLowerCase()))
+      }
+
+      details();
+
+        // fetch(`${baseurl}/traveldetails`)
+        //     .then(res => res.json())
+        //     .then(response => {
+        //         setTimeout(() => {                 
+        //           setUser(response.travelsDetails)
+        //             setLoading(false)
+        //         }, 1000);
+        //     })
+        //     .catch(err => console.log(err))
+    },[]);
+    
+    const filtered = user.filter(user => user.travel_name.toLowerCase().includes(search.toLowerCase()))
     
   return (
     
@@ -41,14 +53,10 @@ const Apiuser = () => {
              <Table sx={{ minWidth: 650 }} aria-label="simple table">
                <TableHead>
                  <TableRow>
-                   <TableCell>Id</TableCell>
-                   <TableCell align="right">Name</TableCell>
-                   <TableCell align="right">Username</TableCell>
-                   <TableCell align="right">Email</TableCell>
-                   <TableCell align="right">Address</TableCell>
-                   <TableCell align="right">Phone</TableCell>
-                   <TableCell align="right">Website</TableCell>
-                   <TableCell align="right">Company</TableCell>
+                    <TableCell>Id</TableCell>
+                    <TableCell align="right">Travels Name</TableCell>
+                    <TableCell align="right">city</TableCell>
+                    <TableCell align="right">Action</TableCell>
                  </TableRow>
                </TableHead>
                <TableBody>
@@ -60,20 +68,17 @@ const Apiuser = () => {
                      <TableCell component="th" scope="row">
                        {row.id}
                      </TableCell>
-                     <TableCell align="right">{row.name}</TableCell>
-                     <TableCell align="right">{row.username}</TableCell>
-                     <TableCell align="right">{row.email}</TableCell>
-                     <TableCell align="right">{row.address.street+","+row.address.suite+","+row.address.city+","+row.address.zipcode}</TableCell>
-                     <TableCell align="right">{row.phone}</TableCell>
-                     <TableCell align="right">{row.website}</TableCell>
-                     <TableCell align="right">{row.company.name}</TableCell>
-
+                     <TableCell align="right">{row.travel_name}</TableCell>
+                     <TableCell align="right">{row.city}</TableCell>
+                     <TableCell align="right"><Button onClick={() => navigate(`/Apiuser/edit/${row.id}`)
+                     }>Edit</Button></TableCell>
                    </TableRow>
                  ))}
                </TableBody>
              </Table>
            </TableContainer>
         }
+        <Outlet/>
     </div>
   )
 }

@@ -10,6 +10,8 @@ import FavItems from "./components/FavItems.jsx";
 import Practice from "./components/Practice.jsx";
 import Message from "./components/MessageCom.jsx";
 import Cart from "./components/E-Commerce/Cart.jsx";
+import EditPage from "./components/EditPage.tsx";
+
 import img from './assets/logo.png'
 import { PageNotFound } from "./components/PageNotFound.jsx";
 
@@ -22,6 +24,7 @@ function App() {
         <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/notes" element={<ProtectedRoute><Notes /></ProtectedRoute>} />
         <Route path="/Apiuser" element={<ProtectedRoute><Apiuser /></ProtectedRoute>} />
+        <Route path="/Apiuser/edit/:id" element={<ProtectedRoute><EditPage /></ProtectedRoute>} />
         <Route path="/Profilecard" element={<ProtectedRoute><ProfileCard title="Kitty" images={img}/></ProtectedRoute>} />
         <Route path="/Favitems" element={<ProtectedRoute><FavItems /></ProtectedRoute>} />
         {/* <Route path="/practice" element={<ProtectedRoute><Practice /></ProtectedRoute>} /> */}
